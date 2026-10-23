@@ -1,17 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-
-const responsibilities = [
-  "Migrate legacy projects/applications toward modern architecture using Angular and Spring Boot.",
-  "Develop and maintain application functionality using Angular and Spring Boot.",
-  "Work with Jenkins for build and deployment workflows.",
-  "Perform deployment of WAR applications to application servers.",
-  "Maintain and enhance enterprise banking applications using Java, Apache Struts and Oracle Database.",
-  "Resolve production bugs and implement new features based on Jira stories and business requirements.",
-  "Develop UI screens, backend logic, reports, and optimize SQL queries, procedures, functions and triggers.",
-  "Collaborate in Agile teams using Git, Bitbucket, Maven and Apache Tomcat for development and deployment.",
-];
 
 const technologies = ["Angular", "Spring Boot", "Java", "Apache Struts", "Oracle", "Jenkins", "Linux", "Apache Tomcat", "Maven", "Git", "Bitbucket", "Jira", "Agile"];
 
@@ -51,7 +41,13 @@ export function ExperienceSection() {
           >
             <span aria-hidden="true" className="absolute -left-1.5 top-1 size-3 rounded-full border-2 border-white bg-emerald-500" />
             <p className="text-xs font-semibold tracking-[0.16em] text-zinc-500">01</p>
-            <p className="mt-5 text-base font-semibold text-zinc-950">BNP Paribas</p>
+            <Image
+              src="/bnp-paribas-logo.svg"
+              alt="BNP Paribas"
+              width={146}
+              height={30}
+              className="mt-5 h-auto w-36 origin-left [filter:drop-shadow(3px_5px_2px_rgba(0,0,0,0.2))] [transform:perspective(500px)_rotateY(-12deg)_rotateX(4deg)] transition-transform duration-300 hover:[transform:perspective(500px)_rotateY(-5deg)_rotateX(1deg)_translateY(-2px)]"
+            />
             <p className="mt-1 text-sm leading-6 text-zinc-600">Software Developer</p>
             <p className="mt-4 text-sm leading-6 text-zinc-500">Jan 2026 — Present</p>
           </motion.div>
@@ -81,18 +77,6 @@ export function ExperienceSection() {
               <p className="mt-2 text-sm text-zinc-700 sm:text-base">
                 Legacy → <span className="font-semibold text-zinc-900">Angular + Spring Boot</span>
               </p>
-            </div>
-
-            <div className="mt-10 border-t border-zinc-100 pt-8">
-              <h4 className="text-xs font-semibold tracking-[0.14em] text-zinc-500">RESPONSIBILITIES</h4>
-              <ul className="mt-5 space-y-4">
-                {responsibilities.map((responsibility) => (
-                  <li key={responsibility} className="flex gap-3 text-sm leading-7 text-zinc-600 sm:text-base">
-                    <span aria-hidden="true" className="mt-3 size-1 shrink-0 rounded-full bg-zinc-400" />
-                    <span>{responsibility}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
 
             <div className="mt-10 border-t border-zinc-100 pt-8">

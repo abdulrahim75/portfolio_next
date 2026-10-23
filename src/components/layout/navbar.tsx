@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { useResumeDownload } from "@/components/shared/resume-download-provider";
 
 const navigationItems = [
   { label: "Home", id: "home" },
@@ -20,6 +22,7 @@ export function Navbar() {
   const programmaticScrollRef = useRef<{ id: string; top: number } | null>(null);
   const reduceMotion = useReducedMotion();
   const resumeAvailable = true;
+  const startResumeDownload = useResumeDownload();
 
   useEffect(() => {
     const sections = navigationItems
@@ -122,7 +125,10 @@ export function Navbar() {
   function handleResumeClick(event: React.MouseEvent<HTMLAnchorElement>) {
     if (!resumeAvailable) {
       event.preventDefault();
+      return;
     }
+
+    startResumeDownload();
   }
 
   return (
@@ -131,13 +137,17 @@ export function Navbar() {
         <a
           href="#home"
           onClick={(event) => handleNavigation(event, "home")}
-          className="inline-flex min-h-11 items-center gap-3 rounded-lg pr-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-950"
+          className="inline-flex min-h-11 items-center rounded-lg pr-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-950"
           aria-label="Abdul Rahim, back to home"
         >
-          <span className="grid size-8 place-items-center rounded-lg bg-zinc-950 text-xs font-semibold tracking-[-0.06em] text-white">
-            AR
-          </span>
-          <span className="text-sm font-semibold tracking-[-0.02em] text-zinc-950">Abdul Rahim</span>
+          <Image
+            src="/abdul-rahim-logo.png"
+            alt="Abdul Rahim logo"
+            width={520}
+            height={160}
+            unoptimized
+            className="h-12 w-auto shrink-0 object-contain sm:h-16"
+          />
         </a>
 
         <nav aria-label="Primary navigation" className="hidden xl:flex xl:items-center xl:gap-1">

@@ -130,3 +130,22 @@
     @apply font-sans;
   }
 }
+
+@keyframes resume-logo-fill {
+  from {
+    clip-path: inset(100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.resume-logo-fill {
+  clip-path: inset(100% 0 0);
+  animation: resume-logo-fill 1.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.resume-logo-fill-reduced {
+  clip-path: inset(0);
+  animation: none;
+}

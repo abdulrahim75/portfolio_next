@@ -16,7 +16,7 @@ const additionalProjects = [
     description: "Developed an Online Time Table Management System using Python Full Stack (Django), enhancing scheduling efficiency with real-time updates, user authentication, and conflict resolution.",
     detail: "Deployed to PythonAnywhere and enabled multi-user access with role-based permissions, improving scheduling efficiency across departments.",
     technologies: ["Python", "Django"],
-    link: "Live Site",
+    link: "https://github.com/abdulrahim75/TimeTableManagement",
   },
   {
     number: "04",
@@ -26,17 +26,21 @@ const additionalProjects = [
     description: "Designed an Employee Management System using Enterprise Java. Streamlined HR operations with features for employee information, attendance, leaves, and payroll management.",
     detail: "Designed to ensure compliance with organizational policies and regulatory requirements, enhancing productivity and fostering a cohesive work environment.",
     technologies: ["Enterprise Java"],
-    link: "GitHub",
+    link: "https://github.com/abdulrahim75/Employee-Management-System",
   },
 ];
 
-function PlaceholderLink({ label }: { label: string }) {
+function ProjectLink({ href, label }: { href: string; label: string }) {
   return (
-    <span aria-label={`${label}: link coming soon`} className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-500 transition-colors hover:border-zinc-300 hover:bg-zinc-50">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 transition-colors hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
+    >
       {label}
       <ArrowUpRight aria-hidden="true" className="size-3.5" />
-      <span className="text-xs text-zinc-400">Coming soon</span>
-    </span>
+    </a>
   );
 }
 
@@ -100,12 +104,12 @@ export function ProjectsSection() {
 
         <motion.article initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ ...transition, delay: reduceMotion ? 0 : 0.1 }} className="mt-14 grid gap-8 rounded-3xl border border-zinc-200 bg-zinc-50 p-5 sm:p-8 lg:mt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:p-10">
           <motion.div whileHover={reduceMotion ? undefined : { y: -3 }} transition={{ duration: reduceMotion ? 0 : 0.25 }} className="flex items-center rounded-2xl bg-zinc-100 p-3 sm:p-6"><CommerceMockup /></motion.div>
-          <div className="flex flex-col"><p className="text-xs font-semibold tracking-[0.16em] text-zinc-500">01</p><h3 className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-4xl">E-commerce Clothing Store</h3><p className="mt-3 text-sm font-medium text-zinc-500">Full Stack · Cloud Native</p><p className="mt-6 text-base leading-8 text-zinc-600">Scalable e-commerce application with authentication, payment integration, live order management, and an AI-powered chatbot.</p><div className="mt-8 space-y-6"><ProjectTags title="TECHNOLOGIES" tags={commerceStack} primary /><ProjectTags title="ENGINEERING" tags={commerceEngineering} /></div><div className="mt-8 flex flex-wrap gap-2"><PlaceholderLink label="Live Site" /><PlaceholderLink label="GitHub" /></div></div>
+          <div className="flex flex-col"><p className="text-xs font-semibold tracking-[0.16em] text-zinc-500">01</p><h3 className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-4xl">E-commerce Clothing Store</h3><p className="mt-3 text-sm font-medium text-zinc-500">Full Stack · Cloud Native</p><p className="mt-6 text-base leading-8 text-zinc-600">Scalable e-commerce application with authentication, payment integration, live order management, and an AI-powered chatbot.</p><div className="mt-8 space-y-6"><ProjectTags title="TECHNOLOGIES" tags={commerceStack} primary /><ProjectTags title="ENGINEERING" tags={commerceEngineering} /></div><div className="mt-8 flex flex-wrap gap-2"><ProjectLink href="https://ecommerce-m4x.vercel.app" label="Live Site" /><ProjectLink href="https://github.com/abdulrahim75/Ecommerce" label="GitHub" /></div></div>
         </motion.article>
 
         <motion.article initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ ...transition, delay: reduceMotion ? 0 : 0.12 }} className="mt-8 grid gap-8 rounded-3xl border border-zinc-200 bg-white p-5 sm:p-8 lg:mt-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:p-10">
           <motion.div whileHover={reduceMotion ? undefined : { y: -3 }} transition={{ duration: reduceMotion ? 0 : 0.25 }} className="flex items-center rounded-2xl bg-zinc-50 p-3 sm:p-6 lg:order-2"><FoodMockup /></motion.div>
-          <div className="flex flex-col lg:order-1"><p className="text-xs font-semibold tracking-[0.16em] text-zinc-500">02</p><h3 className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-4xl">Online Food Ordering System</h3><p className="mt-3 text-sm font-medium text-zinc-500">Full Stack · Backend</p><p className="mt-6 text-base leading-8 text-zinc-600">Scalable food delivery application with role-based access, real-time order tracking, and payment integration.</p><div className="mt-8 space-y-6"><ProjectTags title="TECHNOLOGIES" tags={foodStack} primary /><ProjectTags title="ENGINEERING" tags={foodEngineering} /></div><div className="mt-8"><PlaceholderLink label="GitHub" /></div></div>
+          <div className="flex flex-col lg:order-1"><p className="text-xs font-semibold tracking-[0.16em] text-zinc-500">02</p><h3 className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-4xl">Online Food Ordering System</h3><p className="mt-3 text-sm font-medium text-zinc-500">Full Stack · Backend</p><p className="mt-6 text-base leading-8 text-zinc-600">Scalable food delivery application with role-based access, real-time order tracking, and payment integration.</p><div className="mt-8 space-y-6"><ProjectTags title="TECHNOLOGIES" tags={foodStack} primary /><ProjectTags title="ENGINEERING" tags={foodEngineering} /></div><div className="mt-8"><ProjectLink href="https://github.com/abdulrahim75/onlinefooddelivery" label="GitHub" /></div></div>
         </motion.article>
 
         <div className="mt-20 border-t border-zinc-200 pt-12 sm:mt-24 sm:pt-14">
@@ -134,7 +138,7 @@ export function ProjectsSection() {
                 <p className="mt-4 border-l border-zinc-200 pl-4 text-sm leading-7 text-zinc-500">{project.detail}</p>
                 <div className="mt-7 flex flex-wrap items-end justify-between gap-4 border-t border-zinc-100 pt-5">
                   <div><p className="text-[11px] font-semibold tracking-[0.14em] text-zinc-500">TECHNOLOGY</p><div className="mt-3 flex flex-wrap gap-2">{project.technologies.map((technology) => <motion.span key={technology} whileHover={reduceMotion ? undefined : { y: -1 }} className="rounded-lg bg-zinc-100 px-2.5 py-1.5 text-xs font-medium text-zinc-700">{technology}</motion.span>)}</div></div>
-                  <PlaceholderLink label={project.link} />
+                  <ProjectLink href={project.link} label="GitHub" />
                 </div>
               </motion.article>
             ))}

@@ -2,6 +2,7 @@
 
 import { ArrowRight, Code2, Download, GitFork, Link, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { useResumeDownload } from "@/components/shared/resume-download-provider";
 
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/abdulrahim75", icon: GitFork },
@@ -32,6 +33,7 @@ const technologyStack = [
 
 export function HeroSection() {
   const reduceMotion = useReducedMotion();
+  const startResumeDownload = useResumeDownload();
   const transition = {
     duration: reduceMotion ? 0 : 0.58,
     ease: [0.22, 1, 0.36, 1] as const,
@@ -120,6 +122,7 @@ export function HeroSection() {
                 download="Abdul-Rahim-Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
+                onClick={startResumeDownload}
                 aria-label="Download Abdul Rahim resume"
                 title="Download resume"
                 whileHover={resumeAvailable && !reduceMotion ? { y: -2 } : undefined}
