@@ -9,6 +9,10 @@ export function PortfolioIntro() {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
+  useEffect(() => {
     const timeout = window.setTimeout(
       () => setIsVisible(false),
       reduceMotion ? 500 : 2250,
