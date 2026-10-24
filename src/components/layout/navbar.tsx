@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useResumeDownload } from "@/components/shared/resume-download-provider";
 
 const navigationItems = [
@@ -19,7 +19,6 @@ const navigationItems = [
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const programmaticScrollRef = useRef<{ id: string; top: number } | null>(null);
   const reduceMotion = useReducedMotion();
   const resumeAvailable = true;
   const startResumeDownload = useResumeDownload();
@@ -35,68 +34,32 @@ export function Navbar() {
 
     const header = document.querySelector("header");
     const headerHeight = header?.getBoundingClientRect().height ?? 0;
-    const latestEntries = new Map<string, IntersectionObserverEntry>();
-
-    const updateActiveSection = (entries: IntersectionObserverEntry[]) => {
-      if (programmaticScrollRef.current) {
-        return;
-      }
-
-      entries.forEach((entry) => latestEntries.set(entry.target.id, entry));
-
-      const firstSection = sections[0].getBoundingClientRect();
+    const updateActiveSection = () => {
       const lastSection = sections[sections.length - 1];
       const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
 
-      if (firstSection.top >= -headerHeight || isAtBottom) {
-        setActiveSection(isAtBottom ? lastSection.id : sections[0].id);
+      if (isAtBottom) {
+        setActiveSection(lastSection.id);
         return;
       }
 
-      const visibleEntries = sections
-        .map((section) => latestEntries.get(section.id))
-        .filter((entry): entry is IntersectionObserverEntry => entry?.isIntersecting === true);
-      const bestMatch = visibleEntries.sort((a, b) => {
-        const aScore = a.intersectionRatio * 1000 - Math.abs(a.boundingClientRect.top - headerHeight);
-        const bScore = b.intersectionRatio * 1000 - Math.abs(b.boundingClientRect.top - headerHeight);
-        return bScore - aScore;
-      })[0];
-
-      if (bestMatch) {
-        setActiveSection(bestMatch.target.id);
-      }
+      const activationLine = headerHeight + (window.innerHeight - headerHeight) * 0.35;
+      let currentSection = sections[0];
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= activationLine) {
+          currentSection = section;
+        }
+      });
+      setActiveSection(currentSection.id);
     };
 
-    const observer = new IntersectionObserver(updateActiveSection, {
-      root: null,
-      rootMargin: `-${headerHeight}px 0px -50% 0px`,
-      threshold: [0, 0.15, 0.3, 0.5, 0.7, 0.9, 1],
-    });
-
-    sections.forEach((section) => observer.observe(section));
-
-    const finishProgrammaticScroll = () => {
-      if (!programmaticScrollRef.current) {
-        return;
-      }
-
-      const { top } = programmaticScrollRef.current;
-      if (Math.abs(window.scrollY - top) <= 2) {
-        programmaticScrollRef.current = null;
-      }
-    };
-
-    const handleScrollEnd = () => {
-      programmaticScrollRef.current = null;
-    };
-
-    window.addEventListener("scroll", finishProgrammaticScroll, { passive: true });
-    window.addEventListener("scrollend", handleScrollEnd);
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", finishProgrammaticScroll);
-      window.removeEventListener("scrollend", handleScrollEnd);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
     };
   }, []);
 
@@ -116,7 +79,6 @@ export function Navbar() {
         Math.min(section.getBoundingClientRect().top + window.scrollY - navbarHeight, maxScrollTop),
       );
 
-      programmaticScrollRef.current = { id, top: targetTop };
       window.scrollTo({ top: targetTop, behavior: reduceMotion ? "auto" : "smooth" });
       window.history.replaceState(null, "", `#${id}`);
     }

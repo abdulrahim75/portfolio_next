@@ -3,19 +3,13 @@
 import { ArrowRight, Code2, Download, GitFork, Link, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useResumeDownload } from "@/components/shared/resume-download-provider";
+import { HeroTechVisual } from "@/components/sections/hero-tech-visual";
 
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/abdulrahim75", icon: GitFork },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/abdulrahimxp7/", icon: Link },
   { label: "LeetCode", href: "https://leetcode.com/u/klu_2200031648/", icon: Code2 },
   { label: "Email", href: "mailto:abdulrahimxp7@gmail.com", icon: Mail },
-];
-
-const engineeringFocus = [
-  "Full Stack Development",
-  "Enterprise Applications",
-  "Backend Systems",
-  "Cloud & AI",
 ];
 
 const technologyStack = [
@@ -47,7 +41,7 @@ export function HeroSection() {
         aria-labelledby="hero-heading"
         className="mx-auto w-full max-w-7xl"
       >
-        <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:gap-16">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
@@ -161,54 +155,14 @@ export function HeroSection() {
             </motion.nav>
           </div>
 
-          <motion.aside
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: reduceMotion ? 0 : 0.16 }}
-            className="w-full max-w-xl lg:pt-8"
+          <motion.div
+            initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...transition, delay: reduceMotion ? 0 : 0.2 }}
+            className="w-full"
           >
-            <div className="rounded-[1.6rem] border border-zinc-200 bg-zinc-50 p-5 sm:p-6">
-              <div className="flex items-center justify-between gap-3 border-b border-zinc-200 pb-4">
-                <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-zinc-500">Current</p>
-                <span className="rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-600">
-                  Active
-                </span>
-              </div>
-
-              <div className="mt-5">
-                <p className="text-2xl font-semibold tracking-[-0.05em] text-zinc-950">Software Developer</p>
-                <p className="mt-2 text-sm text-zinc-600">BNP Paribas</p>
-
-                <div className="mt-6 grid gap-4 border-t border-zinc-200 pt-4 text-sm text-zinc-600 sm:grid-cols-2">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">Period</p>
-                    <p className="mt-2 font-medium text-zinc-900">Jan 2026 — Present</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">Location</p>
-                    <p className="mt-2 font-medium text-zinc-900">Bangalore, India</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...transition, delay: reduceMotion ? 0 : 0.42 }}
-              className="mt-5 rounded-[1.5rem] border border-zinc-200 bg-white p-5"
-            >
-              <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-zinc-500">Engineering Focus</p>
-              <ol className="mt-4 divide-y divide-zinc-200">
-                {engineeringFocus.map((item, index) => (
-                  <li key={item} className="flex items-center gap-3 py-3">
-                    <span className="w-8 text-[10px] font-medium tracking-[0.18em] text-zinc-400">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="text-sm font-medium text-zinc-900">{item}</span>
-                  </li>
-                ))}
-              </ol>
-            </motion.div>
-          </motion.aside>
+            <HeroTechVisual reduceMotion={reduceMotion ?? false} />
+          </motion.div>
         </div>
 
         <motion.div
