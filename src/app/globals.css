@@ -150,6 +150,31 @@
   animation: none;
 }
 
+@keyframes portfolio-intro-logo-fill {
+  from {
+    clip-path: inset(100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.portfolio-intro {
+  background:
+    radial-gradient(ellipse at center, rgb(16 185 129 / 7%), transparent 62%),
+    #fff;
+}
+
+.portfolio-intro-logo {
+  clip-path: inset(100% 0 0);
+  animation: portfolio-intro-logo-fill 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.portfolio-intro-logo-reduced {
+  clip-path: inset(0);
+  animation: none;
+}
+
 .hero-tech-grid {
   background-image:
     linear-gradient(to right, rgb(161 161 170 / 8%) 1px, transparent 1px),
@@ -180,25 +205,6 @@
   animation: hero-tech-spin 16s linear infinite;
 }
 
-.hero-tech-knot {
-  animation:
-    hero-tech-knot-horizontal 30s ease-in-out infinite alternate,
-    hero-tech-knot-rotation 60s linear infinite;
-}
-
-.hero-tech-knot-lines {
-  stroke: #047857;
-  stroke-width: 0.72;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.54;
-  vector-effect: non-scaling-stroke;
-}
-
-.hero-tech-knot-diagonals {
-  opacity: 0.22;
-}
-
 .hero-tech-label {
   display: inline-flex;
   align-items: center;
@@ -225,7 +231,7 @@
 
 .hero-tech-label-rest,
 .hero-tech-label-full-stack {
-  top: 7%;
+  top: 3%;
   border-color: rgb(5 150 105 / 20%);
   background: rgb(236 253 245 / 94%);
   color: #047857;
@@ -302,7 +308,6 @@
 }
 
 .hero-tech-visual[data-reduced-motion="true"] .hero-tech-orbit,
-.hero-tech-visual[data-reduced-motion="true"] .hero-tech-knot,
 .hero-tech-visual[data-reduced-motion="true"] .hero-tech-label {
   animation: none;
 }
@@ -323,24 +328,13 @@
   }
 }
 
-@keyframes hero-tech-knot-horizontal {
-  from {
-    translate: calc(-50% + 16px) -50%;
-  }
-  to {
-    translate: calc(-50% - 16px) -50%;
-  }
-}
-
-@keyframes hero-tech-knot-rotation {
-  to {
-    rotate: 1turn;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
+  .portfolio-intro-logo {
+    clip-path: inset(0);
+    animation: none;
+  }
+
   .hero-tech-orbit,
-  .hero-tech-knot,
   .hero-tech-label {
     animation: none;
   }

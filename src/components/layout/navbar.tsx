@@ -137,6 +137,8 @@ export function Navbar() {
           <motion.a
             href={resumeAvailable ? "/Abdul-Rahim-Resume.pdf" : undefined}
             download={resumeAvailable ? true : undefined}
+            target="_blank"
+            rel="noreferrer"
             aria-disabled={!resumeAvailable}
             title={resumeAvailable ? "Download resume" : "Resume file not available"}
             onClick={handleResumeClick}
@@ -186,6 +188,8 @@ export function Navbar() {
               <motion.a
                 href={resumeAvailable ? "/Abdul-Rahim-Resume.pdf" : undefined}
                 download={resumeAvailable ? true : undefined}
+                target="_blank"
+                rel="noreferrer"
                 aria-disabled={!resumeAvailable}
                 title={resumeAvailable ? "Download resume" : "Resume file not available"}
                 onClick={handleResumeClick}
